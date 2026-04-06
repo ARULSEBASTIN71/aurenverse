@@ -101,3 +101,9 @@ app.get('*', (req, res) => {
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => console.log(`🚀 AurenVerse running at http://localhost:${PORT}`))
+// Keep server awake
+setInterval(() => {
+  fetch('https://aurenverse.onrender.com')
+    .then(() => console.log('Server kept awake'))
+    .catch(() => {})
+}, 14 * 60 * 1000)
