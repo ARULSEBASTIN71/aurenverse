@@ -62,6 +62,12 @@ async function sendEmail(data) {
     `
   })
 }
+// ── Send Telegram ─────────────────────────────────────────────────────────────
+async function sendTelegram(data) {
+  const text = `🔥 *NEW LEAD - AurenVerse*\n\n👤 *Name:* ${data.name}\n🏢 *Business:* ${data.businessName || '—'}\n📱 *Phone:* ${data.phone}\n🎯 *Service:* ${data.service}\n💬 *Message:* ${data.message || '—'}\n\n⏰ ${new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})} IST`
+  const url = `https://api.telegram.org/bot8228727506:AAE30MTYmVkgsE5r8DpLRRNZJPgx7meB3yo/sendMessage?chat_id=1225237591&text=${encodeURIComponent(text)}&parse_mode=Markdown`
+  await fetch(url)
+}
 
 // ── Send WhatsApp ─────────────────────────────────────────────────
 async function sendWhatsApp(data) {
@@ -82,6 +88,10 @@ app.post('/api/contact', async (req, res) => {
     // 2. Send Email
     try { await sendEmail({ name, businessName, phone, service, message }) }
     catch(e) { console.log('Email failed:', e.message) }
+
+    // 3. Send Telegram
+    try { await sendTelegram({ name, businessName, phone, service, message }) }
+    catch(e) { console.log('Telegram failed:', e.message) }
 
     // 3. Send WhatsApp
     try { await sendWhatsApp({ name, businessName, phone, service, message }) }
