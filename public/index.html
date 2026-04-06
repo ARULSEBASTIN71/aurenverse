@@ -501,50 +501,29 @@ footer img{height:30px;object-fit:contain}
 </section>
 
 <!-- ── CONTACT ───────────────────────────────────────────── -->
-<section id="contact" class="sec2" style="overflow:hidden">
+<section id="contact" class="sec2" style="overflow:hidden;text-align:center">
   <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(224,28,28,.05),transparent 70%);pointer-events:none"></div>
-  <div class="tag">Get In Touch</div>
+  <div class="tag" style="justify-content:center">Get In Touch</div>
   <h2 class="ttl">START YOUR<br><span style="color:var(--red)">PROJECT</span></h2>
-  <p class="sub">Tell us about your business. We'll reply within 24 hours.</p>
-  <div class="contact-wrap">
-    <div class="reveal-l">
-      <div class="c-item"><div class="c-icon">📧</div><div><div class="c-label">Email</div><div class="c-val"><a href="mailto:theaurenverse@gmail.com">theaurenverse@gmail.com</a></div></div></div>
-      <div class="c-item"><div class="c-icon">📱</div><div><div class="c-label">WhatsApp</div><div class="c-val"><a href="https://wa.me/919750095600">+91 97500 95600</a></div></div></div>
-      <div class="c-item"><div class="c-icon">📞</div><div><div class="c-label">Call </div><div class="c-val"><a href="tel:+919385424841">+91 93854 24841</a></div></div></div>
-      <div class="c-item"><div class="c-icon">🌐</div><div><div class="c-label">Website</div><div class="c-val"><a href="https://aurenverse.in" target="_blank">aurenverse.in</a></div></div></div>
-      <div class="c-item"><div class="c-icon">⚡</div><div><div class="c-label">Delivery</div><div class="c-val">Website ready in 5 days</div></div></div>
-    </div>
-    <div class="reveal-r" id="formArea">
-      <div class="form-wrap">
-        <div class="form-row">
-          <div><label class="form-label">Your Name *</label><input id="fname" type="text" placeholder="John Doe"/></div>
-          <div><label class="form-label">Business Name</label><input id="fbiz" type="text" placeholder="Your Business"/></div>
-        </div>
-        <div><label class="form-label">Phone / WhatsApp *</label><input id="fphone" type="text" placeholder="+91 XXXXX XXXXX"/></div>
-        <div>
-          <label class="form-label">What do you need?</label>
-          <select id="fservice">
-            <option>Website Development</option>
-            <option>SEO Optimization</option>
-            <option>Lead Generation</option>
-            <option>Full Growth Package</option>
-            <option>Something else</option>
-          </select>
-        </div>
-        <div><label class="form-label">Tell us about your project</label><textarea id="fmsg" placeholder="Briefly describe your business..."></textarea></div>
-        <button class="submit-btn" id="submitBtn" onclick="submitForm()">Send Message →</button>
-        <div class="form-error" id="formError" style="display:none"></div> <div style="margin-top:16px;text-align:center">
-  <p style="font-size:12px;color:#888;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px">⚡ For Urgent Enquiries</p>
-  <div style="display:flex;gap:10px">
-    <a href="tel:+919385424841" style="flex:1;background:#1a1a1a;border:1px solid rgba(224,28,28,.3);color:#fff;padding:12px;text-align:center;text-decoration:none;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;display:flex;align-items:center;justify-content:center;gap:8px" onmouseover="this.style.borderColor='#e01c1c'" onmouseout="this.style.borderColor='rgba(224,28,28,.3)'">📞 Call Now</a>
-    <a href="https://wa.me/919750095600?text=Hi%20AurenVerse!%20I%20need%20urgent%20help." target="_blank" style="flex:1;background:#25D366;color:#fff;padding:12px;text-align:center;text-decoration:none;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;display:flex;align-items:center;justify-content:center;gap:8px">💬 WhatsApp</a>
-    <a href="mailto:theaurenverse@gmail.com" style="flex:1;min-width:120px;background:#e01c1c;color:#fff;padding:12px;text-align:center;text-decoration:none;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;display:flex;align-items:center;justify-content:center;gap:8px">✉️ Email Us</a>
-<a href="https://www.instagram.com/aurenverse.in/" target="_blank" style="flex:1;min-width:120px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;padding:12px;text-align:center;text-decoration:none;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;display:flex;align-items:center;justify-content:center;gap:8px">📸 Instagram</a>
+  <p style="color:var(--grey);font-size:15px;line-height:1.65;margin-bottom:48px">Tell us what you need — we'll get back to you within 24 hours.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:600px;margin:0 auto" class="contact-btns">
+    <a href="https://wa.me/919750095600?text=Hi%20AurenVerse!%20I%20want%20to%20enquire%20about%20your%20services.%20Please%20contact%20me." target="_blank" style="background:#25D366;color:#fff;padding:20px 24px;text-decoration:none;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:1.5px;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .3s" onmouseover="this.style.background='#128C7E'" onmouseout="this.style.background='#25D366'">💬 WhatsApp Us</a>
+
+    <a href="tel:+919385424841" style="background:#1a1a1a;border:1px solid rgba(224,28,28,.4);color:#fff;padding:20px 24px;text-decoration:none;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:1.5px;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .3s" onmouseover="this.style.borderColor='var(--red)'" onmouseout="this.style.borderColor='rgba(224,28,28,.4)'">📞 Call Now</a>
+
+    <a href="https://mail.google.com/mail/?view=cm&to=theaurenverse@gmail.com&su=Website Enquiry from AurenVerse" target="_blank" style="background:var(--red);color:#fff;padding:20px 24px;text-decoration:none;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:1.5px;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .3s" onmouseover="this.style.background='#ff2020'" onmouseout="this.style.background='var(--red)'">✉️ Email Us</a>
+
+    <a href="https://www.instagram.com/aurenverse.in/" target="_blank" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;padding:20px 24px;text-decoration:none;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:1.5px;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .3s">📸 Instagram</a>
   </div>
-</div>
-      </div>
-    </div>
+
+  <div style="margin-top:40px;padding:24px;background:rgba(224,28,28,.05);border:1px solid var(--border);max-width:600px;margin:40px auto 0">
+    <p style="font-size:13px;color:var(--grey);line-height:1.7">📍 Chennai, Tamil Nadu, India<br>⚡ Website ready in 5 days &nbsp;|&nbsp; 🕐 Reply within 24 hours &nbsp;|&nbsp; 📱 Available on WhatsApp</p>
   </div>
+
+  <style>
+    @media(max-width:540px){.contact-btns{grid-template-columns:1fr!important}}
+  </style>
 </section>
 
 <!-- FOOTER -->
