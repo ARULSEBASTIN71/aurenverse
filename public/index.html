@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="icon" type="image/png" href="favicon.png"/>
+<title>AurenVerse — Growth Systems for Modern Businesses</title>
+<meta name="description" content="Custom websites, SEO & lead generation for businesses. 18+ projects delivered. Website live in 5 days."/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── VARIABLES ─────────────────────────────────────────── */
+:root{
+  --red:#e01c1c;
+  --red2:#9b1010;
+  --glow:rgba(224,28,28,.3);
+  --bg:#0a0a0a;
+  --bg2:#111;
+  --bg3:#161616;
+  --white:#fff;
+  --grey:#888;
+  --light:#ccc;
+  --border:rgba(224,28,28,.15);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'Rajdhani',sans-serif;overflow-x:hidden;cursor:none}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.4}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--red)}
+
+/* ── CURSOR ────────────────────────────────────────────── */
+#cur{position:fixed;width:10px;height:10px;background:var(--red);border-radius:50%;pointer-events:none;z-index:9999;transition:transform .15s}
+#curR{position:fixed;width:32px;height:32px;border:1px solid var(--red);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .3s}
+
+/* ── NAV ───────────────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:10px 48px;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px);border-bottom:1px solid rgba(224,28,28,.07);background:rgba(10,10,10,.85);transition:background .3s}
+nav.scrolled{background:rgba(10,10,10,.97)}
+.nav-logo img{height:40px;object-fit:contain;display:block}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--grey);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;transition:color .2s}
+.nav-links a:hover{color:var(--red)}
+.nav-cta{background:var(--red);color:#fff;padding:9px 20px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-decoration:none;clip-path:polygon(7px 0%,100% 0%,100% calc(100% - 7px),calc(100% - 7px) 100%,0% 100%,0% 7px);transition:background .2s}
+.nav-cta:hover{background:#ff2020}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:1px solid var(--border);padding:8px 10px;cursor:pointer}
+.hamburger span{display:block;width:20px;height:2px;background:var(--white);transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:62px;left:0;right:0;background:#0a0a0a;border-bottom:1px solid var(--border);padding:24px 28px;flex-direction:column;gap:4px;z-index:99}
+.mobile-menu a{color:var(--white);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.05);font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;transition:color .2s}
+.mobile-menu a:hover{color:var(--red)}
+.mobile-menu .mob-cta{margin-top:12px;background:var(--red);color:#fff;padding:14px;text-align:center;font-size:13px;font-family:'Rajdhani',sans-serif;letter-spacing:2px;font-weight:700;border:none}
+
+/* ── SECTION BASE ──────────────────────────────────────── */
+.sec{padding:90px 60px;position:relative}
+.sec2{padding:90px 60px;position:relative;background:var(--bg2)}
+.tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.tag::before{content:'';width:20px;height:1px;background:var(--red);flex-shrink:0}
+.ttl{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,68px);line-height:1;margin-bottom:14px;letter-spacing:2px}
+.sub{color:var(--grey);font-size:15px;max-width:480px;line-height:1.65;margin-bottom:48px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.card{background:var(--bg2);border:1px solid var(--border);padding:26px 22px;transition:all .3s}
+.card:hover{border-color:rgba(224,28,28,.4);transform:translateY(-3px)}
+.card2{background:var(--bg3);border:1px solid var(--border);transition:all .3s;overflow:hidden}
+.card2:hover{border-color:rgba(224,28,28,.4);transform:translateY(-3px)}
+
+/* ── ANIMATIONS ────────────────────────────────────────── */
+@keyframes gridMove{from{background-position:0 0}to{background-position:60px 60px}}
+@keyframes spin3d{from{transform:rotateY(0) rotateX(15deg)}to{transform:rotateY(360deg) rotateX(15deg)}}
+@keyframes rotR{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes rotL{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 30px var(--glow)}50%{box-shadow:0 0 60px var(--glow)}}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.reveal{opacity:0;transform:translateY(36px);transition:all .75s cubic-bezier(.25,.46,.45,.94)}
+.reveal.on{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-36px);transition:all .75s cubic-bezier(.25,.46,.45,.94)}
+.reveal-l.on{opacity:1;transform:translateX(0)}
+.reveal-r{opacity:0;transform:translateX(36px);transition:all .75s cubic-bezier(.25,.46,.45,.94)}
+.reveal-r.on{opacity:1;transform:translateX(0)}
+
+/* ── HERO ──────────────────────────────────────────────── */
+#hero{min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:120px 60px 60px}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(224,28,28,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(224,28,28,.035) 1px,transparent 1px);background-size:60px 60px;animation:gridMove 20s linear infinite}
+.hero-3d{position:absolute;right:5%;top:50%;transform:translateY(-50%);width:400px;height:400px;display:flex;align-items:center;justify-content:center}
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(224,28,28,.2)}
+.ring1{width:290px;height:290px;animation:rotR 8s linear infinite}
+.ring2{width:360px;height:360px;border-style:dashed;border-color:rgba(224,28,28,.1);animation:rotL 15s linear infinite}
+.ring3{width:400px;height:400px;border-color:rgba(224,28,28,.06);animation:rotR 25s linear infinite}
+.ring-dot{position:absolute;width:8px;height:8px;background:var(--red);border-radius:50%;box-shadow:0 0 10px var(--red);top:-4px;left:50%;transform:translateX(-50%)}
+.cube{width:190px;height:190px;position:relative;transform-style:preserve-3d;animation:spin3d 12s linear infinite}
+.face{position:absolute;width:190px;height:190px;background:linear-gradient(135deg,rgba(224,28,28,.1),rgba(224,28,28,.02));border:1px solid rgba(224,28,28,.25)}
+.f1{transform:rotateY(0deg) translateZ(95px)}
+.f2{transform:rotateY(90deg) translateZ(95px)}
+.f3{transform:rotateY(180deg) translateZ(95px)}
+.f4{transform:rotateY(270deg) translateZ(95px)}
+.diamond{position:absolute;width:130px;height:130px;background:linear-gradient(135deg,var(--red2),#2a0000);border:2px solid var(--red);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--red);animation:pulse 3s ease-in-out infinite}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(62px,8vw,108px);line-height:.9;margin-bottom:22px;letter-spacing:2px}
+.red-txt{color:var(--red);text-shadow:0 0 50px var(--glow)}
+.outline-txt{-webkit-text-stroke:1.5px rgba(255,255,255,.22);color:transparent}
+.hero-desc{font-size:16px;color:var(--light);line-height:1.7;max-width:460px;margin-bottom:34px}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
+.btn-red{background:var(--red);color:#fff;padding:13px 28px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:700;text-decoration:none;clip-path:polygon(8px 0%,100% 0%,100% calc(100% - 8px),calc(100% - 8px) 100%,0% 100%,0% 8px);transition:background .2s;font-family:'Rajdhani',sans-serif}
+.btn-red:hover{background:#ff2020}
+.btn-out{border:1px solid rgba(255,255,255,.18);color:var(--white);padding:13px 28px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:700;text-decoration:none;transition:border-color .2s;font-family:'Rajdhani',sans-serif}
+.btn-out:hover{border-color:var(--red);color:var(--red)}
+.stats{display:flex;gap:36px;flex-wrap:wrap}
+.stat{border-left:2px solid var(--red);padding-left:14px}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1}
+.stat-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-top:2px}
+
+/* ── MARQUEE ───────────────────────────────────────────── */
+.marquee-wrap{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(224,28,28,.03);padding:16px 0}
+.marquee-track{display:flex;gap:52px;white-space:nowrap;animation:marq 22s linear infinite}
+.m-item{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:var(--grey);display:inline-flex;align-items:center;gap:14px}
+.m-dot{width:5px;height:5px;background:var(--red);border-radius:50%;flex-shrink:0}
+
+/* ── PORTFOLIO IFRAME ──────────────────────────────────── */
+.preview{height:180px;overflow:hidden;position:relative;background:var(--bg)}
+.preview iframe{width:250%;height:250%;transform:scale(.4);transform-origin:top left;border:none;pointer-events:none}
+.preview-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(10,10,10,.95))}
+.proj-info{padding:22px 26px}
+.proj-cat{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:8px}
+.proj-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;margin-bottom:8px}
+.proj-desc{color:var(--grey);font-size:13px;line-height:1.6;margin-bottom:14px}
+.proj-link{color:var(--red);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700}
+
+/* ── GYM CARDS ─────────────────────────────────────────── */
+.gym-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--grey);margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.gym-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── TEAM ──────────────────────────────────────────────── */
+.founder-card{background:var(--bg2);border:1px solid var(--border);overflow:hidden}
+.founder-img{height:280px;position:relative;overflow:hidden}
+.founder-img img{width:100%;height:100%;object-fit:cover;object-position:top;filter:contrast(1.05)}
+.founder-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.9),transparent 55%)}
+.founder-name{position:absolute;bottom:18px;left:20px}
+.founder-name h3{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px}
+.founder-name span{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--red);font-weight:700}
+.founder-bio{padding:18px 22px;font-size:13px;color:var(--grey);line-height:1.7}
+.founder-btns{padding:0 22px 18px;display:flex;gap:8px}
+.f-btn{flex:1;padding:10px;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;text-decoration:none;text-align:center;font-family:'Rajdhani',sans-serif;transition:all .2s}
+.f-btn-red{background:var(--red);color:#fff}
+.f-btn-red:hover{background:#ff2020}
+.f-btn-out{border:1px solid var(--border);color:var(--white)}
+.f-btn-out:hover{border-color:var(--red);color:var(--red)}
+.team-card{background:var(--bg2);border:1px solid var(--border);padding:18px 20px;display:flex;gap:12px;align-items:flex-start;transition:all .3s}
+.team-card:hover{border-color:rgba(224,28,28,.4);transform:translateY(-2px)}
+.tc-icon{font-size:22px;flex-shrink:0}
+.tc-role{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px}
+.tc-count{color:var(--red);font-family:'Bebas Neue',sans-serif;font-size:14px}
+.tc-desc{font-size:12px;color:var(--grey);line-height:1.5;margin-top:2px}
+
+/* ── WHY US ────────────────────────────────────────────── */
+.why-card{background:var(--bg2);border:1px solid var(--border);padding:26px 22px;display:flex;gap:18px;align-items:flex-start;transition:all .3s}
+.why-card:hover{border-color:rgba(224,28,28,.4);transform:translateY(-2px)}
+.why-icon{width:46px;height:46px;background:rgba(224,28,28,.07);border:1px solid rgba(224,28,28,.2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.why-title{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:1px;margin-bottom:5px}
+.why-desc{font-size:13px;color:var(--grey);line-height:1.65}
+.trust-bar{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);overflow:hidden;margin-top:30px}
+.trust-item{padding:26px 18px;text-align:center;background:var(--bg);border-right:1px solid var(--border)}
+.trust-item:last-child{border-right:none}
+.trust-n{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--red);line-height:1;margin-bottom:5px}
+.trust-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--grey)}
+
+/* ── PROCESS ───────────────────────────────────────────── */
+.proc-wrap{display:grid;grid-template-columns:repeat(5,1fr);position:relative;margin-top:60px}
+.proc-line{position:absolute;top:34px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--red),transparent)}
+.proc-step{text-align:center;padding:0 10px}
+.proc-num{width:68px;height:68px;border:1px solid var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--red);margin:0 auto 18px;background:var(--bg2);position:relative;z-index:2;transition:all .3s;cursor:default}
+.proc-num:hover{background:var(--red);color:#fff;box-shadow:0 0 30px var(--glow)}
+.proc-name{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;margin-bottom:6px}
+.proc-desc{font-size:12px;color:var(--grey);line-height:1.5}
+
+/* ── TESTIMONIALS ──────────────────────────────────────── */
+.testi-card{background:var(--bg3);border:1px solid var(--border);padding:30px 26px;position:relative;overflow:hidden;transition:all .3s}
+.testi-card:hover{border-color:rgba(224,28,28,.4);transform:translateY(-3px)}
+.quote-bg{position:absolute;top:10px;right:18px;font-family:Georgia,serif;font-size:80px;color:rgba(224,28,28,.06);line-height:1;user-select:none}
+.stars{display:flex;gap:3px;margin-bottom:14px}
+.star{color:var(--red);font-size:13px}
+.testi-text{font-size:14px;color:var(--light);line-height:1.8;font-style:italic;margin-bottom:22px}
+.testi-footer{display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid var(--border)}
+.testi-avatar{width:42px;height:42px;background:rgba(224,28,28,.1);border:1px solid rgba(224,28,28,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.testi-name{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px}
+.testi-role{font-size:11px;color:var(--grey);margin-top:1px}
+.testi-tag{margin-left:auto;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);font-weight:700;text-align:right;line-height:1.4}
+
+/* ── FAQ ───────────────────────────────────────────────── */
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-btn{width:100%;background:none;border:none;padding:18px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:14px;text-align:left}
+.faq-q{font-family:'Rajdhani',sans-serif;font-size:17px;font-weight:600;color:var(--white);letter-spacing:.3px}
+.faq-icon{color:var(--red);font-size:22px;flex-shrink:0;transition:transform .3s;line-height:1}
+.faq-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-body.open{max-height:200px}
+.faq-body p{font-size:14px;color:var(--grey);line-height:1.8;padding-bottom:18px}
+
+/* ── CONTACT ───────────────────────────────────────────── */
+.contact-wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:44px;align-items:start;margin-top:48px}
+.c-item{display:flex;gap:14px;align-items:center;padding:16px 18px;background:var(--bg2);border:1px solid var(--border);transition:all .3s;margin-bottom:12px}
+.c-item:hover{border-color:rgba(224,28,28,.4);transform:translateX(5px)}
+.c-icon{font-size:18px;flex-shrink:0}
+.c-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:3px}
+.c-val{font-size:15px;font-weight:500}
+.c-val a{color:var(--white);text-decoration:none}
+.c-val a:hover{color:var(--red)}
+.form-wrap{display:flex;flex-direction:column;gap:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);font-weight:600;margin-bottom:6px;display:block}
+input,select,textarea{background:var(--bg2);border:1px solid var(--border);color:var(--white);padding:13px 16px;font-family:'Rajdhani',sans-serif;font-size:15px;width:100%;outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--red)}
+select{cursor:pointer}
+textarea{min-height:110px;resize:none}
+.submit-btn{background:var(--red);border:none;color:#fff;padding:15px;font-size:13px;letter-spacing:2.5px;text-transform:uppercase;font-weight:700;font-family:'Rajdhani',sans-serif;cursor:pointer;width:100%;transition:background .2s}
+.submit-btn:hover{background:#ff2020}
+.submit-btn:disabled{background:var(--red2);cursor:wait}
+.form-success{background:rgba(224,28,28,.06);border:1px solid var(--red);padding:36px 24px;text-align:center}
+.form-error{color:var(--red);font-size:13px;text-align:center;margin-top:8px}
+
+/* ── FOOTER ────────────────────────────────────────────── */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+footer img{height:30px;object-fit:contain}
+.footer-copy{font-size:12px;color:var(--grey);letter-spacing:.5px}
+.footer-links{display:flex;gap:22px}
+.footer-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--red)}
+
+/* ── RESPONSIVE ────────────────────────────────────────── */
+@media(max-width:1024px){
+  .hero-3d{display:none}
+}
+@media(max-width:900px){
+  .sec,.sec2{padding:70px 28px}
+  nav{padding:10px 20px}
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .grid2,.contact-wrap{grid-template-columns:1fr}
+  .grid3{grid-template-columns:1fr 1fr}
+  .about-wrap{grid-template-columns:1fr}
+  .proc-wrap{grid-template-columns:1fr;gap:20px}
+  .proc-line{display:none}
+  .trust-bar{grid-template-columns:1fr 1fr}
+  .trust-item{border-bottom:1px solid var(--border)}
+  .form-row{grid-template-columns:1fr}
+  footer{flex-direction:column;text-align:center;padding:24px}
+}
+@media(max-width:540px){
+  .grid3,.grid4{grid-template-columns:1fr}
+  .btns{flex-direction:column}
+  .btns a{text-align:center}
+  .stats{gap:20px}
+  #hero{padding:110px 24px 50px}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cur"></div>
+<div id="curR"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo"><img src="logo.png" alt="AurenVerse"/></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:10px">
+    <a href="#contact" class="nav-cta">Get Started</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMob()">Services</a>
+  <a href="#portfolio" onclick="closeMob()">Work</a>
+  <a href="#team" onclick="closeMob()">Team</a>
+  <a href="#why" onclick="closeMob()">Why Us</a>
+  <a href="#testimonials" onclick="closeMob()">Reviews</a>
+  <a href="#contact" onclick="closeMob()">Contact</a>
+  <a href="#contact" class="mob-cta" onclick="closeMob()">Get Started →</a>
+</div>
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<section id="hero" class="sec">
+  <div class="hero-grid"></div>
+
+  <!-- 3D Diamond -->
+  <div class="hero-3d">
+    <div class="ring ring1"><div class="ring-dot"></div></div>
+    <div class="ring ring2"></div>
+    <div class="ring ring3"></div>
+    <div class="cube">
+      <div class="face f1"></div>
+      <div class="face f2"></div>
+      <div class="face f3"></div>
+      <div class="face f4"></div>
+    </div>
+    <div class="diamond">A</div>
+  </div>
+
+  <div class="reveal" style="position:relative;z-index:2;max-width:640px">
+    <div class="tag">Growth Systems for Modern Businesses</div>
+    <h1>WE BUILD<br><span class="red-txt">DIGITAL</span><br><span class="outline-txt">MACHINES</span></h1>
+    <p class="hero-desc">Custom websites, SEO & lead generation for businesses ready to grow. Website live in 5 days.</p>
+    <div class="btns">
+      <a href="#portfolio" class="btn-red">See Our Work</a>
+      <a href="#contact" class="btn-out">Start a Project</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="stat-n">18+</div><div class="stat-l">Projects</div></div>
+      <div class="stat"><div class="stat-n">4+</div><div class="stat-l">Gym Sites</div></div>
+      <div class="stat"><div class="stat-n">5 Days</div><div class="stat-l">Delivery</div></div>
+      <div class="stat"><div class="stat-n">5★</div><div class="stat-l">Rating</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marqTrack"></div>
+</div>
+
+<!-- ── SERVICES ──────────────────────────────────────────── -->
+<section id="services" class="sec">
+  <div class="tag">What We Do</div>
+  <h2 class="ttl">OUR SERVICES</h2>
+  <p class="sub">Three core services. One goal — grow your business.</p>
+  <div class="grid3 reveal">
+    <div class="card">
+      <div style="position:absolute;top:18px;right:18px;font-family:'Bebas Neue',sans-serif;font-size:46px;color:rgba(224,28,28,.06);line-height:1">01</div>
+      <div style="font-size:28px;margin-bottom:14px">🌐</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;margin-bottom:10px">Web Development</div>
+      <div style="color:var(--grey);font-size:14px;line-height:1.6;margin-bottom:16px">Custom sites built in 5 days. Fast, mobile-first, built to convert visitors into clients.</div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--light)"><span style="width:14px;height:1px;background:var(--red);display:inline-block;flex-shrink:0"></span>Custom design</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--light)"><span style="width:14px;height:1px;background:var(--red);display:inline-block;flex-shrink:0"></span>Mobile responsive</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--light)"><span style="width:14px;height:1px;background:var(--red);display:inline-block;flex-shrink:0"></span>Fast loading</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--light)"><span style="width:14px;height:1px;background:var(--red);display:inline-block;flex-shrink:0"></span>Conversion focused</div>
+      </div>
+    </div>
+    <div class="card">
+      <div style="position:absolute;top:18px;right:18px;font-family:'Bebas Neue',sans-serif;font-size:46px;color:rgba(224,28,28,.06);line-height:1">02</div>
+      <div style="font-size:28px;margin-bottom:14px">🔍</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;margin-bottom:10px">SEO Optimization</div>
+      <div style="color:var(--grey);font-size:14px;line-height:1.6;margin-bottom:16px">Rank on Google and get found by real customers without paying for ads.</div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--light)"><span style="width:14px;height:1px;background:var(--red);display:inline-block;flex-shrink:0"></span>On-page SEO</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--light)"><span style="width:14px;height:1px;background:var(--red);display:inline-block;flex-shrink:0"></span>Local SEO</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--light)"><span style="width:14px;height:1px;background:var(--red);display:inline-block;flex-shrink:0"></span>Keyword strategy</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--light)"><span style="width:14px;height:1px;background:var(--red);display:inline-block;flex-shrink:0"></span>Monthly reports</div>
+      </div>
+    </div>
+    <div class="card">
+      <div style="position:absolute;top:18px;right:18px;font-family:'Bebas Neue',sans-serif;font-size:46px;color:rgba(224,28,28,.06);line-height:1">03</div>
+      <div style="font-size:28px;margin-bottom:14px">🎯</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;margin-bottom:10px">Lead Generation</div>
+      <div style="color:var(--grey);font-size:14px;line-height:1.6;margin-bottom:16px">Automated enquiry systems that send leads straight to your WhatsApp — 24/7.</div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--light)"><span style="width:14px;height:1px;background:var(--red);display:inline-block;flex-shrink:0"></span>Smart contact forms</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--light)"><span style="width:14px;height:1px;background:var(--red);display:inline-block;flex-shrink:0"></span>WhatsApp alerts</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--light)"><span style="width:14px;height:1px;background:var(--red);display:inline-block;flex-shrink:0"></span>CTA optimisation</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--light)"><span style="width:14px;height:1px;background:var(--red);display:inline-block;flex-shrink:0"></span>Conversion tracking</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PORTFOLIO ─────────────────────────────────────────── -->
+<section id="portfolio" class="sec2">
+  <div class="tag">Our Work</div>
+  <h2 class="ttl">18+ PROJECTS DELIVERED</h2>
+  <p class="sub">Real websites. Real businesses. Real results.</p>
+  <div class="grid2 reveal" style="margin-bottom:18px">
+    <div class="card2">
+      <div class="preview"><iframe src="https://orchidhigh-school.vercel.app/" loading="lazy" scrolling="no" title="Orchid High School"></iframe><div class="preview-overlay"></div></div>
+      <div class="proj-info">
+        <div class="proj-cat">Education</div>
+        <div class="proj-name">Orchid High School</div>
+        <div class="proj-desc">School website — academics, admissions, contact. Built to impress parents.</div>
+        <a href="https://orchidhigh-school.vercel.app/" target="_blank" class="proj-link">View Live →</a>
+      </div>
+    </div>
+    <div class="card2">
+      <div class="preview"><iframe src="https://framezstudioo.netlify.app/" loading="lazy" scrolling="no" title="Framez Studio"></iframe><div class="preview-overlay"></div></div>
+      <div class="proj-info">
+        <div class="proj-cat">E-commerce / Studio</div>
+        <div class="proj-name">Framez Studio</div>
+        <div class="proj-desc">Photo frames & gifts shop with ordering system — converts browsers to buyers.</div>
+        <a href="https://framezstudioo.netlify.app/" target="_blank" class="proj-link">View Live →</a>
+      </div>
+    </div>
+  </div>
+  <div class="reveal">
+    <div class="gym-label">Gym & Fitness — 4 Projects Completed</div>
+    <div class="grid4">
+      <div class="card" style="text-align:center;padding:18px"><div style="font-size:26px;margin-bottom:10px">🏋️</div><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;margin-bottom:4px">Fitness Center</div><div style="font-size:11px;color:var(--grey)">Gym + Lead Gen</div></div>
+      <div class="card" style="text-align:center;padding:18px"><div style="font-size:26px;margin-bottom:10px">💪</div><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;margin-bottom:4px">Power Gym</div><div style="font-size:11px;color:var(--grey)">Website + SEO</div></div>
+      <div class="card" style="text-align:center;padding:18px"><div style="font-size:26px;margin-bottom:10px">🥊</div><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;margin-bottom:4px">Combat Fitness</div><div style="font-size:11px;color:var(--grey)">Web + Membership</div></div>
+      <div class="card" style="text-align:center;padding:18px"><div style="font-size:26px;margin-bottom:10px">⚡</div><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;margin-bottom:4px">Elite Athletics</div><div style="font-size:11px;color:var(--grey)">Full System</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TEAM ──────────────────────────────────────────────── -->
+<section id="team" class="sec">
+  <div class="tag">The People</div>
+  <h2 class="ttl">MEET THE TEAM</h2>
+  <p class="sub">6+ professionals on every project — designers, developers, testers & strategists.</p>
+  <div class="about-wrap reveal" style="display:grid;grid-template-columns:300px 1fr;gap:36px;align-items:start">
+    <div class="founder-card">
+      <div class="founder-img">
+        <img src="founder.jpg" alt="Arul Anandam"/>
+        <div class="founder-name"><h3>Arul Anandam</h3><span>Founder & CEO</span></div>
+      </div>
+      <div class="founder-bio">Leads every project from strategy to delivery. Vision: give every business the digital power that only big brands used to have.</div>
+      <div class="founder-btns">
+        <a href="tel:+91 9385424841" class="f-btn f-btn-red">Call Now</a>
+        <a href="https://wa.me/919750095600" target="_blank" class="f-btn f-btn-out">WhatsApp</a>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="team-card"><div class="tc-icon">🎨</div><div><div style="display:flex;align-items:center;gap:6px"><div class="tc-role">UI/UX Designers</div><div class="tc-count">2+</div></div><div class="tc-desc">Pixel-perfect layouts built to convert.</div></div></div>
+      <div class="team-card"><div class="tc-icon">👨‍💻</div><div><div style="display:flex;align-items:center;gap:6px"><div class="tc-role">Web Developers</div><div class="tc-count">2+</div></div><div class="tc-desc">Clean, fast code on all devices.</div></div></div>
+      <div class="team-card"><div class="tc-icon">🧪</div><div><div style="display:flex;align-items:center;gap:6px"><div class="tc-role">QA Testers</div><div class="tc-count">1+</div></div><div class="tc-desc">Every site tested before launch.</div></div></div>
+      <div class="team-card"><div class="tc-icon">📈</div><div><div style="display:flex;align-items:center;gap:6px"><div class="tc-role">SEO Strategist</div><div class="tc-count">1+</div></div><div class="tc-desc">Built to rank on Google.</div></div></div>
+      <div class="team-card"><div class="tc-icon">🎯</div><div><div style="display:flex;align-items:center;gap:6px"><div class="tc-role">Lead Gen Expert</div><div class="tc-count">1+</div></div><div class="tc-desc">Turn visitors into paying clients.</div></div></div>
+      <div class="team-card"><div class="tc-icon">🗂️</div><div><div style="display:flex;align-items:center;gap:6px"><div class="tc-role">Project Manager</div><div class="tc-count">1+</div></div><div class="tc-desc">On-time, every time.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY US ─────────────────────────────────────────────── -->
+<section id="why" class="sec2">
+  <div class="tag">Why AurenVerse</div>
+  <h2 class="ttl">WHY CLIENTS<br><span style="color:var(--red)">CHOOSE US</span></h2>
+  <p class="sub">What sets us apart from every other agency.</p>
+  <div class="grid2 reveal">
+    <div class="why-card"><div class="why-icon">⚡</div><div><div class="why-title">5-Day Delivery</div><div class="why-desc">Most agencies take weeks. We deliver in 5 days — no shortcuts, no compromise.</div></div></div>
+    <div class="why-card"><div class="why-icon">🎯</div><div><div class="why-title">Built to Convert</div><div class="why-desc">Every element is designed to turn visitors into enquiries and enquiries into clients.</div></div></div>
+    <div class="why-card"><div class="why-icon">🔍</div><div><div class="why-title">SEO From Day 1</div><div class="why-desc">Google-ready from the first line of code. Rank without paying for ads.</div></div></div>
+    <div class="why-card"><div class="why-icon">🧪</div><div><div class="why-title">Fully Tested</div><div class="why-desc">QA team tests across all devices and browsers before launch. Zero bugs.</div></div></div>
+    <div class="why-card"><div class="why-icon">🤝</div><div><div class="why-title">No Hidden Costs</div><div class="why-desc">Clear quote upfront. No surprises. We treat your money like our own.</div></div></div>
+    <div class="why-card"><div class="why-icon">📊</div><div><div class="why-title">Results in Numbers</div><div class="why-desc">Real reports — enquiries, traffic, rankings. Not just promises.</div></div></div>
+  </div>
+  <div class="trust-bar reveal">
+    <div class="trust-item"><div class="trust-n">18+</div><div class="trust-l">Projects Done</div></div>
+    <div class="trust-item"><div class="trust-n">5 Days</div><div class="trust-l">Avg Delivery</div></div>
+    <div class="trust-item"><div class="trust-n">6+</div><div class="trust-l">Team Per Project</div></div>
+    <div class="trust-item" style="border-right:none"><div class="trust-n">100%</div><div class="trust-l">Satisfaction</div></div>
+  </div>
+</section>
+
+<!-- ── PROCESS ───────────────────────────────────────────── -->
+<section id="process" class="sec">
+  <div class="tag">How We Work</div>
+  <h2 class="ttl">OUR 5-STEP PROCESS</h2>
+  <p class="sub">From first call to live website — every time.</p>
+  <div class="proc-wrap reveal">
+    <div class="proc-line"></div>
+    <div class="proc-step"><div class="proc-num">01</div><div class="proc-name">Discovery</div><div class="proc-desc">We learn your business & goals.</div></div>
+    <div class="proc-step"><div class="proc-num">02</div><div class="proc-name">Design</div><div class="proc-desc">Conversion-focused layout crafted.</div></div>
+    <div class="proc-step"><div class="proc-num">03</div><div class="proc-name">Build</div><div class="proc-desc">Clean, fast code on all devices.</div></div>
+    <div class="proc-step"><div class="proc-num">04</div><div class="proc-name">Test</div><div class="proc-desc">Full QA before anything goes live.</div></div>
+    <div class="proc-step"><div class="proc-num">05</div><div class="proc-name">Launch 🚀</div><div class="proc-desc">Your site goes live & starts working.</div></div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ──────────────────────────────────────── -->
+<section id="testimonials" class="sec2">
+  <div class="tag">Client Reviews</div>
+  <h2 class="ttl">WHAT CLIENTS SAY</h2>
+  <p class="sub">Real feedback from real business owners.</p>
+  <div class="grid2 reveal">
+    <div class="testi-card"><div class="quote-bg">"</div><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><div class="testi-text">"Before AurenVerse, we got 2–3 walk-ins a week. After our website went live, enquiry calls started coming in daily. The site made us look premium — clients expected us to be expensive before they even walked in."</div><div class="testi-footer"><div class="testi-avatar">💪</div><div><div class="testi-name">Rajesh Kumar</div><div class="testi-role">Owner, Iron Beast Gym </div></div><div class="testi-tag">Gym + Lead Gen</div></div></div>
+    <div class="testi-card"><div class="quote-bg">"</div><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><div class="testi-text">"The WhatsApp enquiry button alone brought us 14 new members in the first month. Our competitors don't have anything close to what we have. 5 days delivery — just like they promised."</div><div class="testi-footer"><div class="testi-avatar">🏋️</div><div><div class="testi-name">Priya Devi</div><div class="testi-role">Manager, FitZone Fitness</div></div><div class="testi-tag">Gym + WhatsApp</div></div></div>
+    <div class="testi-card"><div class="quote-bg">"</div><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><div class="testi-text">"Parents used to call us for basic questions. Now the website answers everything and they arrive already convinced. Parents often compliment us on it during orientation. Very professional work."</div><div class="testi-footer"><div class="testi-avatar">🏫</div><div><div class="testi-name">Mr. Suresh Rajan</div><div class="testi-role">Principal, Orchid High School</div></div><div class="testi-tag">School Website</div></div></div>
+    <div class="testi-card"><div class="quote-bg">"</div><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><div class="testi-text">"I was running my business on Instagram DMs — exhausting. Now I wake up to order notifications. The design is beautiful and customers always say how easy it is to use. Absolutely recommend."</div><div class="testi-footer"><div class="testi-avatar">🖼️</div><div><div class="testi-name">Kavitha S.</div><div class="testi-role">Founder, Framez Studio</div></div><div class="testi-tag">E-commerce Site</div></div></div>
+  </div>
+</section>
+
+<!-- ── FAQ ───────────────────────────────────────────────── -->
+<section id="faq" class="sec">
+  <div class="tag">Got Questions?</div>
+  <h2 class="ttl">FAQ</h2>
+  <p class="sub">Everything you need to know before starting.</p>
+  <div class="reveal" style="max-width:780px">
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">How long does it take?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Most websites go live in 5 business days. Larger e-commerce projects may take 7–10 days. We give you a clear timeline before we start.</p></div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">How much does it cost?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Every project is custom-quoted. Contact us for a clear, no-hidden-cost quote. We have options for all business sizes.</p></div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">Will it work on mobile?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Yes — every website is 100% mobile responsive. With 70%+ of Indian users on phones, mobile-first is our standard, not an option.</p></div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">Do you do SEO?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Yes. SEO is built into every website — on-page, local, and technical. Your site is Google-ready from day one.</p></div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">Do I own the website?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>100%. Once delivered and paid, everything is yours — code, design, domain. It's your asset, not ours.</p></div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">How will I get leads?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Every form submission sends you an instant WhatsApp message and email with the customer's details. 24/7, automatic.</p></div></div>
+  </div>
+</section>
+
+<!-- ── CONTACT ───────────────────────────────────────────── -->
+<section id="contact" class="sec2" style="overflow:hidden">
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(224,28,28,.05),transparent 70%);pointer-events:none"></div>
+  <div class="tag">Get In Touch</div>
+  <h2 class="ttl">START YOUR<br><span style="color:var(--red)">PROJECT</span></h2>
+  <p class="sub">Tell us about your business. We'll reply within 24 hours.</p>
+  <div class="contact-wrap">
+    <div class="reveal-l">
+      <div class="c-item"><div class="c-icon">📧</div><div><div class="c-label">Email</div><div class="c-val"><a href="mailto:theaurenverse@gmail.com">theaurenverse@gmail.com</a></div></div></div>
+      <div class="c-item"><div class="c-icon">📱</div><div><div class="c-label">WhatsApp</div><div class="c-val"><a href="https://wa.me/919750095600">+91 97500 95600</a></div></div></div>
+      <div class="c-item"><div class="c-icon">📞</div><div><div class="c-label">Call </div><div class="c-val"><a href="tel:+919385424841">+91 93854 24841</a></div></div></div>
+      <div class="c-item"><div class="c-icon">🌐</div><div><div class="c-label">Website</div><div class="c-val"><a href="https://aurenverse.in" target="_blank">aurenverse.in</a></div></div></div>
+      <div class="c-item"><div class="c-icon">⚡</div><div><div class="c-label">Delivery</div><div class="c-val">Website ready in 5 days</div></div></div>
+    </div>
+    <div class="reveal-r" id="formArea">
+      <div class="form-wrap">
+        <div class="form-row">
+          <div><label class="form-label">Your Name *</label><input id="fname" type="text" placeholder="John Doe"/></div>
+          <div><label class="form-label">Business Name</label><input id="fbiz" type="text" placeholder="Your Business"/></div>
+        </div>
+        <div><label class="form-label">Phone / WhatsApp *</label><input id="fphone" type="text" placeholder="+91 XXXXX XXXXX"/></div>
+        <div>
+          <label class="form-label">What do you need?</label>
+          <select id="fservice">
+            <option>Website Development</option>
+            <option>SEO Optimization</option>
+            <option>Lead Generation</option>
+            <option>Full Growth Package</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div><label class="form-label">Tell us about your project</label><textarea id="fmsg" placeholder="Briefly describe your business..."></textarea></div>
+        <button class="submit-btn" id="submitBtn" onclick="submitForm()">Send Message →</button>
+        <div class="form-error" id="formError" style="display:none"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="logo.png" alt="AurenVerse"/>
+  <div class="footer-copy">© 2025 AurenVerse. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#portfolio">Work</a>
+    <a href="#team">Team</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+// ── CURSOR ──────────────────────────────────────────────────────
+const cur=document.getElementById('cur'),curR=document.getElementById('curR')
+let mx=0,my=0,rx=0,ry=0
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY
+  cur.style.left=(mx-5)+'px';cur.style.top=(my-5)+'px'
+})
+;(function anim(){
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12
+  curR.style.left=rx+'px';curR.style.top=ry+'px'
+  requestAnimationFrame(anim)
+})()
+document.querySelectorAll('a,button,.proc-num').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='scale(2)';curR.style.transform='translate(-50%,-50%) scale(1.5)'})
+  el.addEventListener('mouseleave',()=>{cur.style.transform='scale(1)';curR.style.transform='translate(-50%,-50%) scale(1)'})
+})
+
+// ── NAVBAR SCROLL ────────────────────────────────────────────────
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50)
+})
+
+// ── HAMBURGER ───────────────────────────────────────────────────
+const mob=document.getElementById('mobileMenu')
+document.getElementById('hamburger').addEventListener('click',()=>{
+  mob.style.display=mob.style.display==='flex'?'none':'flex'
+})
+function closeMob(){mob.style.display='none'}
+
+// ── MARQUEE ──────────────────────────────────────────────────────
+const items=['WEB DEVELOPMENT','SEO OPTIMIZATION','LEAD GENERATION','CUSTOM WEBSITES','5-DAY DELIVERY','CHENNAI BASED']
+const track=document.getElementById('marqTrack')
+;[...items,...items].forEach(t=>{
+  track.innerHTML+=`<span class="m-item"><span class="m-dot"></span>${t}</span>`
+})
+
+// ── SCROLL REVEAL ────────────────────────────────────────────────
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')})
+},{threshold:.08})
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe(el))
+
+// ── FAQ ──────────────────────────────────────────────────────────
+function toggleFaq(btn){
+  const body=btn.nextElementSibling
+  const icon=btn.querySelector('.faq-icon')
+  const isOpen=body.classList.contains('open')
+  document.querySelectorAll('.faq-body').forEach(b=>b.classList.remove('open'))
+  document.querySelectorAll('.faq-icon').forEach(i=>{i.textContent='+';i.style.transform='rotate(0)'})
+  if(!isOpen){
+    body.classList.add('open')
+    icon.textContent='+'
+    icon.style.transform='rotate(45deg)'
+  }
+}
+
+// ── CONTACT FORM ─────────────────────────────────────────────────
+async function submitForm(){
+  const name=document.getElementById('fname').value.trim()
+  const phone=document.getElementById('fphone').value.trim()
+  const err=document.getElementById('formError')
+  err.style.display='none'
+  if(!name||!phone){err.textContent='Please enter your name and phone number.';err.style.display='block';return}
+  const btn=document.getElementById('submitBtn')
+  btn.disabled=true;btn.textContent='Sending...'
+  try{
+    const res=await fetch('/api/contact',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        name,
+        businessName:document.getElementById('fbiz').value.trim(),
+        phone,
+        service:document.getElementById('fservice').value,
+        message:document.getElementById('fmsg').value.trim()
+      })
+    })
+    if(res.ok){
+      document.getElementById('formArea').innerHTML=`
+        <div class="form-success">
+          <div style="font-size:44px;margin-bottom:14px">🔥</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;margin-bottom:10px">MESSAGE RECEIVED!</div>
+          <p style="color:var(--grey);font-size:14px">Arul will reach out within 24 hours on WhatsApp or call.</p>
+        </div>`
+    }else{
+      throw new Error('Server error')
+    }
+  }catch(e){
+    err.textContent='Something went wrong. Please call us: +91 97500 95600'
+    err.style.display='block'
+    btn.disabled=false;btn.textContent='Send Message →'
+  }
+}
+</script>
+</body>
+</html>
